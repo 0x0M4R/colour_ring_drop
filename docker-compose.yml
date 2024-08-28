@@ -1,0 +1,55 @@
+version: '3.8'
+services:
+  backend:
+    container_name:  backend
+    env_file:
+      - .env  
+    environment:
+      - SECRET_KEY=${SECRET_KEY}
+    build: ./backend
+    volumes:
+      - ./backend:/web_app/backend
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+  db:
+    container_name: db
+    image: postgres
+    env_file:
+      - .env  
+    environment:
+      POSTGRES_DB: ${DB_HOST}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      
+  frontend:
+    container_name: frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    volumes:
+      - ./frontend:/frontend
+      - /frontend/node_modules
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+    depends_on:
+      - backend
+    tty: true
+  admin:
+    env_file:
+      - .env 
+    container_name: admin_portal
+    build: ./admin_portal
+    ports:
+      - "4000:4000"
+    depends_on:
+      - backend
+      - db
+    tty: true
+volumes:
+  postgres_data:

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Invitation</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', serif;
+            margin: 0;
+            padding: 40px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            background: white;
+            border: 1px solid #dedede;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 600px;
+        }
+        .header, .footer {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .content {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-top: 20px;
+        }
+        .link {
+            margin-top: 20px;
+        }
+        .link a {
+            color: #065f46;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>The Drop Event Invitation</h1>
+        </div>
+        <div class="content">
+            <p>Dear {{ user.first_name }},</p>
+            <p>You're invited to an exclusive event:</p>
+            <p><strong>"The Drop" - A Private Jewelry Unveiling</strong><br>{{ event_date }} | www.xyz.com</p>
+            <p>Be one of the few to own our limited edition pieces before their public release. Only 25 exquisite items available.</p>
+            <p>Your discretion is appreciated, Please RSVP by {{ register_deadline }}: <a href="{{ participation_link }}">Click here to RSVP</a></p>
+            <div class="link">
+                <p>We'll share details via WhatsApp on the registered number.</p>
+                <p>Looking forward to your presence at this special occasion.</p>
+                <p>Your discretion is appreciated, but feel free to extend this rare opportunity to your inner circle through</p>
+                <p><a href="{{ ref_link }}">this link</a>.</p>
+            </div>
+        </div>
+        <div class="footer">
+            <p>Warmly,</p>
+            <p>Tariq Riaz</p>
+            <p>Founder and Creative Designer</p>
+        </div>
+    </div>
+</body>
+</html>
